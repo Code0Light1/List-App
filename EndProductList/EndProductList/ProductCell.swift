@@ -120,8 +120,9 @@ class ProductCell: UICollectionViewCell, Listable {
         guard let url = URL(string: item.image) else {
             return
         }
-       
-        self.productImageView.sd_setImage(with: url, placeholderImage: UIImage(systemName: "photo"), options: SDWebImageOptions.progressiveLoad, context: nil)
+        let image = UIImage(systemName: "photo")
+        image?.withRenderingMode(.alwaysTemplate)
+        self.productImageView.sd_setImage(with: url, placeholderImage: image, options: SDWebImageOptions.progressiveLoad, context: nil)
         
         
     }

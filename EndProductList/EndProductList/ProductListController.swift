@@ -68,21 +68,21 @@ class ProductListController: UIViewController{
         productHeader.snp.makeConstraints{ make in
             make.leading.trailing.equalToSuperview()
             make.top.equalTo(view.safeAreaLayoutGuide.snp.top)
-            make.height.equalTo(30)
+            make.height.equalToSuperview().multipliedBy(0.05)
         }
         productFooter = ProductsFooterView()
         view.addSubview(productFooter)
         productFooter.snp.makeConstraints{ make in
             make.trailing.leading.bottom.equalToSuperview()
-            make.height.equalTo(50)
+            make.height.equalToSuperview().multipliedBy(0.1)
         }
         
     }
 }
 
 private enum LayoutConstant {
-    static let spacing: CGFloat = 10.0
-    static let itemHeight: CGFloat = 200.0
+    static let spacing: CGFloat = 15.0
+    static let itemHeight: CGFloat = 230.0
 }
 extension ProductListController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
