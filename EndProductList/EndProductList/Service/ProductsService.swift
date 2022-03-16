@@ -16,11 +16,11 @@ final class ProductsService : RequestHandler, ProductsServiceProtocol {
     let endpoint = "https://www.endclothing.com/media/catalog/example.json"
     var task : URLSessionTask?
     func fetchProducts(_ completion: @escaping ((Result<[Product], ErrorResult>) -> Void)) {
-        self.cancelFetchCurrencies()
+        self.cancelFetchProducts()
         task = RequestService().loadData(urlString: endpoint, completion: self.networkResult(completion: completion))
     }
     
-    func cancelFetchCurrencies() {
+    func cancelFetchProducts() {
         
         if let task = task {
             task.cancel()

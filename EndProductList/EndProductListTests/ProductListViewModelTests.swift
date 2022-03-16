@@ -11,11 +11,11 @@ import XCTest
 class ProductListViewModelTests: XCTestCase {
     var viewModel : ProductsViewModel!
     
-    fileprivate var service : MockCurrencyService!
+    fileprivate var service : MockProductService!
     
     override func setUp() {
         super.setUp()
-        self.service = MockCurrencyService()
+        self.service = MockProductService()
         self.viewModel = ProductsViewModel(service: service)
     }
     
@@ -25,14 +25,14 @@ class ProductListViewModelTests: XCTestCase {
         super.tearDown()
     }
     
-    func testFetchWithNoService() {
+    func test_fetch_with_no_service() {
         
-        let expectation = XCTestExpectation(description: "No service currency")
+        let expectation = XCTestExpectation(description: "No service")
         
         // giving no service to a view model
         viewModel.service = nil
         
-        // expected to not be able to fetch currencies
+        // expected to not be able to fetch products
         viewModel.onErrorHandling = { error in
             expectation.fulfill()
         }
@@ -41,9 +41,9 @@ class ProductListViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
     
-    func testFetchCurrencies() {
+    func test_fetch_products() {
         
-        let expectation = XCTestExpectation(description: "Currency fetch")
+        let expectation = XCTestExpectation(description: "Product fetch")
         
         // giving a service mocking products
         service.products = [Product(image: "dummy url", name: "Shoe", price: "100", id: "1")]
@@ -60,11 +60,11 @@ class ProductListViewModelTests: XCTestCase {
         wait(for: [expectation], timeout: 5.0)
     }
     
-    func testFetchNoProducts() {
+    func test_fetch_no_products() {
         
         let expectation = XCTestExpectation(description: "No products")
         
-        // giving a service mocking error during fetching currencies
+        // giving a service mocking error during fetching products
         service.products = nil
         
         // expected completion to fail
@@ -79,7 +79,7 @@ class ProductListViewModelTests: XCTestCase {
     
 
 
-fileprivate class MockCurrencyService : ProductsServiceProtocol {
+fileprivate class MockProductService : ProductsServiceProtocol {
     
     var products : [Product]?
 
