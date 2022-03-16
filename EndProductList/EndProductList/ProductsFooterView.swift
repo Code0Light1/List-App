@@ -6,6 +6,7 @@
 //
 
 import UIKit
+//Abstractions used to create dynamic footer options
 protocol FooterItemPresentable {
     var image: UIImage {get}
     func headerAction()
@@ -40,14 +41,29 @@ class ProductsFooterView: UIView {
         stack.distribution = .fillEqually
         return stack
     }()
+    
     override init(frame: CGRect) {
         super.init(frame: frame)
-        let search = FooterItem(image: UIImage(systemName: "magnifyingglass")!)
-        let wishlist = FooterItem(image: UIImage(systemName: "heart")!)
-        let end = FooterItem(image: UIImage(named: "end")!)
-        let profile = FooterItem(image: UIImage(systemName: "person")!)
-        let cart = FooterItem(image: UIImage(systemName: "bag")!)
-        options.append(contentsOf: [search, wishlist, end ,profile, cart])
+        if let glass = UIImage(systemName: "magnifyingglass") {
+            let search = FooterItem(image: glass)
+            options.append(search)
+        }
+        if let heart =  UIImage(systemName: "heart") {
+            let wishlist = FooterItem(image: heart)
+            options.append(wishlist)
+        }
+        if let end =  UIImage(named: "end") {
+            let end = FooterItem(image: end)
+            options.append(end)
+        }
+        if let profile = UIImage(systemName: "person") {
+            let profile = FooterItem(image: profile)
+            options.append(profile)
+        }
+        if let bag = UIImage(systemName: "bag") {
+            let cart = FooterItem(image: bag)
+            options.append(cart)
+        }
         setupSubviews()
     }
     
@@ -71,10 +87,9 @@ class ProductsFooterView: UIView {
                 make.centerX.equalToSuperview()
                 make.centerY.equalToSuperview()
             }
-            
             optionsStack.addArrangedSubview(view)
-            
         }
+        
         optionsStack.snp.makeConstraints{ make in
             make.top.bottom.equalToSuperview().inset(1)
             make.leading.trailing.equalToSuperview()
