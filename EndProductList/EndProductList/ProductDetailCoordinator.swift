@@ -13,7 +13,6 @@ protocol BackToRootViewDelegate: AnyObject {
     func navigateBackToFirstPage(newOrderCoordinator: ProductDetailCoordinator)
 }
 
-
 class ProductDetailCoordinator: Coordinator {
     private(set)  var childCoordinator: [Coordinator] = []
     private  var navigationController: UINavigationController
@@ -30,8 +29,6 @@ class ProductDetailCoordinator: Coordinator {
         self.navigationController.pushViewController(viewController, animated: true)
     }
 }
-
-
 
 extension ProductDetailCoordinator : ProductDetailControllerDelegate {
     // Navigate to first page

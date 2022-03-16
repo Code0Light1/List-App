@@ -113,8 +113,6 @@ class ProductDetailController: UIViewController {
         productStake.addArrangedSubview(descriptionLabel)
         productStake.addArrangedSubview(UIView())
         
-        
-        
         view.addSubview(productStake)
         productStake.snp.makeConstraints { make in
             make.trailing.equalToSuperview()
@@ -142,6 +140,4 @@ extension ProductDetailController {
     @objc func backButtonTapped() {
         self.delegate?.navigateToFirstPage()
     }
-    
-    
 }
